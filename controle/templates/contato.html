@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+{% block title %}Contato{% endblock %}
+{% block content %}
+<h1>Contato</h1>
+<p>&#9993; <a href="mailto:raphael_arcanjo@live.com">raphael_arcanjo@live.com</a></p>
+<p>&#128222; <a href="tel:+5521979110744"></a>+55 (21) 97911-0744</p>
+<hr>
+<form action="" method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="email">E-mail</label>
+        <input type="email" name="email" id="email" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label for="nome">Nome</label>
+        <input type="text" name="nome" id="nome" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label for="assunto">Assunto</label>
+        <input type="text" name="assunto" id="assunto" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label for="mensagem">Mensagem</label>
+        <textarea name="mensagem" id="mensagem" class="form-control" cols="30" rows="10"></textarea>
+    </div>
+</form>
+{% endblock %}

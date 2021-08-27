@@ -23,38 +23,45 @@
 </head>
 
 <body>
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <header class="container-fluid bg-warning">
+        <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container-fluid">
-                <a class="navbar-brand border rounded p-2" href="#">CF</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <a class="navbar-brand px-2 border border-dark bg-white rounded" href="/">CF</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+                            <a href="{% url 'home' %}" class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}" aria-current="page">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Features</a>
+                            <a href="{% url 'entrada' %}" class="nav-link {% if request.resolver_match.url_name == 'entrada' %}active{% endif %}">Entrada</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Pricing</a>
+                            <a href="{% url 'saida' %}" class="nav-link {% if request.resolver_match.url_name == 'saida' %}active{% endif %}">Saída</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                            <a href="{% url 'contato' %}" class="nav-link {% if request.resolver_match.url_name == 'contato' %}active{% endif %}">Contato</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-    <main>
+    
+    <main class="container">
         {% block content %}
         {% endblock %}
     </main>
-    <footer></footer>
+
+    <footer class="container-fluid bg-warning mt-auto py-4">
+        <p class="small">
+            Criado por: <a href="https://github.com/raphaelarcanjo" target="_blank">Raphael Arcanjo</a>
+        </p>
+    </footer>
 </body>
 
 </html>

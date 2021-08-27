@@ -1,4 +1,30 @@
 {% extends 'layout.html' %}
 {% block title %}Home{% endblock %}
 {% block content %}
+<h1 class="py-3">Resumo financeiro</h1>
+<div class="row mx-0">
+    <div class="card col-sm-4 p-0">
+        <div class="card-header text-white bg-success">Entrada</div>
+        <div class="card-body">
+            <h5 class="card-title">Valor total de entrada</h5>
+            <p class="card-text">R$ {{ entrada }}</p>
+            <a href="{% url 'entrada' %}" class="btn btn-dark">Ver detalhes</a>
+        </div>
+    </div>
+    <div class="card col-sm-4 p-0">
+        <div class="card-header text-white bg-danger">Saída</div>
+        <div class="card-body">
+            <h5 class="card-title">Valor total de saída</h5>
+            <p class="card-text">R$ {{ saida }}</p>
+            <a href="{% url 'saida' %}" class="btn btn-dark">Ver detalhes</a>
+        </div>
+    </div>
+    <div class="card col-sm-4 p-0">
+        <div class="card-header text-white bg-primary">Total</div>
+        <div class="card-body">
+            <h5 class="card-title">Valor total em caixa</h5>
+            <p class="card-text">R$ {{ caixa }}</p>
+        </div>
+    </div>
+</div>
 {% endblock %}
