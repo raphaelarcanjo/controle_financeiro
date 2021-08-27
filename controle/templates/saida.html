@@ -8,20 +8,20 @@
         <label for="valor">Valor</label>
         <div class="input-group">
             <span class="input-group-text">R$</span>
-            <input type="number" class="form-control" id="valor" step="0.01" min="0">
+            <input type="number" class="form-control" id="valor" step="0.01" min="0" name="valor" value="{{ saida.valor }}">
         </div>
     </div>
     <div class="mb-3 col-md-4">
         <label for="data">Data</label>
-        <input type="date" class="form-control" id="data">
+        <input type="date" class="form-control" id="data" name="data" value="{{ saida.data }}">
     </div>
     <div class="mb-3 col-md-4">
         <label for="fonte">Fonte</label>
-        <input type="text" class="form-control" id="fonte">
+        <input type="text" class="form-control" id="fonte" name="fonte" value="{{ saida.fonte }}">
     </div>
     <div class="mb-3 col-12">
         <div class="form-check">
-            <input type="checkbox" name="superfluo" id="superfluo" class="form-check-input">
+            <input type="checkbox" name="superfluo" id="superfluo" class="form-check-input"  {% if saida.superfluo %}checked=""{% endif %}>
             <label for="superfluo" class="form-check-label">Supérfluo</label>
         </div>
     </div>
@@ -29,5 +29,5 @@
         <input type="submit" value="Salvar" class="btn btn-warning">
     </div>
 </form>
-<p>Total: R$ {{ saida }}</p>
+<p>Total: R$ {{ saida.valor }}</p>
 {% endblock %}

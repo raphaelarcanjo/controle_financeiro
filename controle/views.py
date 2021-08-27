@@ -11,15 +11,21 @@ def home(request):
 
 
 def entrada(request):
+    if request.method == 'POST':
+        pass
+    entrada = request.POST
     data = {
-        'entrada': 0
+        'entrada': entrada
     }
     return render(request, 'entrada.html', data)
 
 
 def saida(request):
+    if request.method == 'POST':
+        pass
+    saida = request.POST
     data = {
-        'saida': 0
+        'saida': saida
     }
     return render(request, 'saida.html', data)
 

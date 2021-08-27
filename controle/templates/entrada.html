@@ -8,20 +8,20 @@
         <label for="valor">Valor</label>
         <div class="input-group">
             <span class="input-group-text">R$</span>
-            <input type="number" class="form-control" id="valor" step="0.01" min="0">
+            <input type="number" class="form-control" id="valor" step="0.01" min="0" name="valor" value="{{ entrada.valor }}">
         </div>
     </div>
     <div class="mb-3 col-md-4">
         <label for="data">Data</label>
-        <input type="date" class="form-control" id="data">
+        <input type="date" class="form-control" id="data" name="data" value="{{ entrada.data }}">
     </div>
     <div class="mb-3 col-md-4">
         <label for="fonte">Fonte</label>
-        <input type="text" class="form-control" id="fonte">
+        <input type="text" class="form-control" id="fonte" name="fonte" value="{{ entrada.fonte }}">
     </div>
     <div class="mb-3 col-12">
         <div class="form-check">
-            <input type="checkbox" name="extra" id="extra" class="form-check-input">
+            <input type="checkbox" name="extra" id="extra" class="form-check-input" {% if entrada.extra %}checked=""{% endif %}>
             <label for="extra" class="form-check-label">Extra</label>
         </div>
     </div>
@@ -30,5 +30,5 @@
     </div>
 </form>
 <hr>
-<p>Total: R$ {{ entrada }}</p>
+<p>Total: R$ {{ entrada.valor }}</p>
 {% endblock %}
