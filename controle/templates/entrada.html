@@ -8,20 +8,20 @@
         <label for="valor">Valor</label>
         <div class="input-group">
             <span class="input-group-text">R$</span>
-            <input type="number" class="form-control" id="valor" step="0.01" min="0" name="valor" value="{{ entrada.valor }}">
+            <input type="number" class="form-control" id="valor" step="0.01" min="0" name="valor" value="{{ form_entrada.valor }}">
         </div>
     </div>
     <div class="mb-3 col-md-4">
         <label for="data">Data</label>
-        <input type="date" class="form-control" id="data" name="data" value="{{ entrada.data }}">
+        <input type="date" class="form-control" id="data" name="data" value="{{ form_entrada.data }}">
     </div>
     <div class="mb-3 col-md-4">
         <label for="fonte">Fonte</label>
-        <input type="text" class="form-control" id="fonte" name="fonte" value="{{ entrada.fonte }}">
+        <input type="text" class="form-control" id="fonte" name="fonte" value="{{ form_entrada.fonte }}">
     </div>
     <div class="mb-3 col-12">
         <div class="form-check">
-            <input type="checkbox" name="extra" id="extra" class="form-check-input" {% if entrada.extra %}checked=""{% endif %}>
+            <input type="checkbox" name="extra" id="extra" class="form-check-input" {% if form_entrada.extra %}checked=""{% endif %}>
             <label for="extra" class="form-check-label">Extra</label>
         </div>
     </div>
@@ -30,5 +30,26 @@
     </div>
 </form>
 <hr>
-<p>Total: R$ {{ entrada.valor }}</p>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Valor</th>
+            <th>Data</th>
+            <th>Extra</th>
+            <th>Fonte</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for entrada in entradas %}
+            <tr>
+                <td>R$ {{ entrada.valor }}</td>
+                <td>{{ entrada.data|date:'d/m/Y' }}</td>
+                <td>{% if entrada.extra %}Sim{% else %}Não{% endif %}</td>
+                <td>{{ entrada.fonte }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<hr>
+<p>Total: R$ {{ total|floatformat:2 }}</p>
 {% endblock %}

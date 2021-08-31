@@ -7,7 +7,7 @@
         <div class="card-header text-white bg-success">Entrada</div>
         <div class="card-body">
             <h5 class="card-title">Valor total de entrada</h5>
-            <p class="card-text">R$ {{ entrada }}</p>
+            <p class="card-text">R$ {{ entrada|floatformat:2 }}</p>
             <a href="{% url 'entrada' %}" class="btn btn-dark">Ver detalhes</a>
         </div>
     </div>
@@ -15,7 +15,7 @@
         <div class="card-header text-white bg-danger">Saída</div>
         <div class="card-body">
             <h5 class="card-title">Valor total de saída</h5>
-            <p class="card-text">R$ {{ saida }}</p>
+            <p class="card-text">R$ {{ saida|floatformat:2 }}</p>
             <a href="{% url 'saida' %}" class="btn btn-dark">Ver detalhes</a>
         </div>
     </div>
@@ -23,7 +23,7 @@
         <div class="card-header text-white bg-primary">Total</div>
         <div class="card-body">
             <h5 class="card-title">Valor total em caixa</h5>
-            <p class="card-text">R$ {{ caixa }}</p>
+            <p class="card-text">R$ {{ total|floatformat:2 }}</p>
         </div>
     </div>
 </div>

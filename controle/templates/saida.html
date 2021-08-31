@@ -8,20 +8,20 @@
         <label for="valor">Valor</label>
         <div class="input-group">
             <span class="input-group-text">R$</span>
-            <input type="number" class="form-control" id="valor" step="0.01" min="0" name="valor" value="{{ saida.valor }}">
+            <input type="number" class="form-control" id="valor" step="0.01" min="0" name="valor" value="{{ form_saida.valor }}">
         </div>
     </div>
     <div class="mb-3 col-md-4">
         <label for="data">Data</label>
-        <input type="date" class="form-control" id="data" name="data" value="{{ saida.data }}">
+        <input type="date" class="form-control" id="data" name="data" value="{{ form_saida.data }}">
     </div>
     <div class="mb-3 col-md-4">
         <label for="fonte">Fonte</label>
-        <input type="text" class="form-control" id="fonte" name="fonte" value="{{ saida.fonte }}">
+        <input type="text" class="form-control" id="fonte" name="fonte" value="{{ form_saida.fonte }}">
     </div>
     <div class="mb-3 col-12">
         <div class="form-check">
-            <input type="checkbox" name="superfluo" id="superfluo" class="form-check-input"  {% if saida.superfluo %}checked=""{% endif %}>
+            <input type="checkbox" name="superfluo" id="superfluo" class="form-check-input"  {% if form_saida.superfluo %}checked=""{% endif %}>
             <label for="superfluo" class="form-check-label">Supérfluo</label>
         </div>
     </div>
@@ -29,5 +29,27 @@
         <input type="submit" value="Salvar" class="btn btn-warning">
     </div>
 </form>
-<p>Total: R$ {{ saida.valor }}</p>
+<hr>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Valor</th>
+            <th>Data</th>
+            <th>Supérfluo</th>
+            <th>Fonte</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for saida in saidas %}
+            <tr>
+                <td>R$ {{ saida.valor }}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<hr>
+<p>Total: R$ {{ total|floatformat:2 }}</p>
 {% endblock %}
