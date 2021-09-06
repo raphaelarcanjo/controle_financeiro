@@ -17,7 +17,7 @@
     </div>
     <div class="mb-3 col-md-4">
         <label for="fonte">Fonte</label>
-        <input type="text" class="form-control" id="fonte" name="fonte" value="{{ form_entrada.fonte }}">
+        <input type="text" class="form-control" id="fonte" name="fonte" value="{{ form_entrada.fonte }}" maxlength="80">
     </div>
     <div class="mb-3 col-12">
         <div class="form-check">
@@ -33,6 +33,7 @@
 <table class="table table-striped">
     <thead>
         <tr>
+            <th>Ações</th>
             <th>Valor</th>
             <th>Data</th>
             <th>Extra</th>
@@ -42,6 +43,12 @@
     <tbody>
         {% for entrada in entradas %}
             <tr>
+                <td>
+                    <div class="btn-group">
+                        <a href="{% url 'entrada_excluir' entrada.id %}" class="btn btn-danger btn-sm">Excluir</a>
+                        <a href="{% url 'entrada_editar' entrada.id %}" class="btn btn-secondary btn-sm">Editar</a>
+                    </div>
+                </td>
                 <td>R$ {{ entrada.valor }}</td>
                 <td>{{ entrada.data|date:'d/m/Y' }}</td>
                 <td>{% if entrada.extra %}Sim{% else %}Não{% endif %}</td>

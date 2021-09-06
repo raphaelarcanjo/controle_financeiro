@@ -17,7 +17,7 @@
     </div>
     <div class="mb-3 col-md-4">
         <label for="fonte">Fonte</label>
-        <input type="text" class="form-control" id="fonte" name="fonte" value="{{ form_saida.fonte }}">
+        <input type="text" class="form-control" id="fonte" name="fonte" value="{{ form_saida.fonte }}" maxlength="80">
     </div>
     <div class="mb-3 col-12">
         <div class="form-check">
@@ -33,6 +33,7 @@
 <table class="table table-striped">
     <thead>
         <tr>
+            <th>Ações</th>
             <th>Valor</th>
             <th>Data</th>
             <th>Supérfluo</th>
@@ -42,10 +43,16 @@
     <tbody>
         {% for saida in saidas %}
             <tr>
+                <td>
+                    <div class="btn-group">
+                        <a href="{% url 'saida_excluir' saida.id %}" class="btn btn-danger btn-sm">Excluir</a>
+                        <a href="{% url 'saida_editar' saida.id %}" class="btn btn-secondary btn-sm">Editar</a>
+                    </div>
+                </td>
                 <td>R$ {{ saida.valor }}</td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>{{ saida.data|date:'d/m/Y' }}</td>
+                <td>{% if saida.superfluo %}Sim{% else %}Não{% endif %}</td>
+                <td>{{ saida.fonte }}</td>
             </tr>
         {% endfor %}
     </tbody>
