@@ -9,6 +9,7 @@ Novas funcionalidades serão implementadas em breve.
 - [x] Cadastro de entrada
 - [x] Cadastro de saída
 - [ ] Relatórios de entrada e saída mensal e anual
+- [ ] Filtros de entrada e saída
 
 ### Dependências
 
