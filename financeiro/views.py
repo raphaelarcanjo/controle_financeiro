@@ -1,7 +1,9 @@
 from django.http.response import HttpResponse, JsonResponse
 from django.db.models import Sum
+from django.contrib import messages
 from django.shortcuts import redirect, render
 from . import models
+
 
 def home(request):
     entrada = models.Entrada.objects.all().aggregate(Sum('valor'))['valor__sum']
@@ -26,12 +28,13 @@ def entrada(request):
                 raise ValueError('A descrição da fonte de entrada está muito grande')
             entrada = models.Entrada()
             entrada.valor = request.POST.get('valor')
-            entrada.data = request.POST.get('data')
+            if request.POST.get('data'):
+                entrada.data = request.POST.get('data')
             entrada.fonte = request.POST.get('fonte')
             entrada.extra = True if request.POST.get('extra') else False
             entrada.save()
         except Exception as e:
-            print(e)
+            messages.error(request, e)
             form_entrada = request.POST
     entradas = models.Entrada.objects.all()
     total = models.Entrada.objects.all().aggregate(Sum('valor'))['valor__sum']
@@ -51,13 +54,14 @@ def entrada_editar(request, id):
                 raise ValueError('A descrição da fonte de entrada está muito grande')
             entrada = models.Entrada.objects.filter(id=id).first()
             entrada.valor = request.POST.get('valor')
-            entrada.data = request.POST.get('data')
+            if request.POST.get('data'):
+                entrada.data = request.POST.get('data')
             entrada.fonte = request.POST.get('fonte')
             entrada.extra = True if request.POST.get('extra') else False
             entrada.save()
             return redirect('entrada')
         except Exception as e:
-            print(e)
+            messages.error(request, e)
             form_entrada = request.POST
     form_entrada = models.Entrada.objects.filter(id=id).values().get()
     data = {
@@ -71,7 +75,7 @@ def entrada_excluir(request, id):
             models.Entrada.objects.filter(id=request.POST.get('id')).delete()
             return redirect('entrada')
         except Exception as e:
-            print(e)
+            messages.error(request, e)
     data = {
         'id': id
     }
@@ -87,12 +91,13 @@ def saida(request):
                 raise ValueError('A descrição da fonte de entrada está muito grande')
             saida = models.Saida()
             saida.valor = request.POST.get('valor')
-            saida.data = request.POST.get('data')
+            if request.POST.get('data'):
+                saida.data = request.POST.get('data')
             saida.fonte = request.POST.get('fonte')
             saida.extra = True if request.POST.get('extra') else False
             saida.save()
         except Exception as e:
-            print(e)
+            messages.error(request, e)
             form_saida = request.POST
     saidas = models.Saida.objects.all()
     total = models.Saida.objects.all().aggregate(Sum('valor'))['valor__sum']
@@ -112,13 +117,14 @@ def saida_editar(request, id):
                 raise ValueError('A descrição da fonte de saida está muito grande')
             saida = models.Saida.objects.filter(id=id).first()
             saida.valor = request.POST.get('valor')
-            saida.data = request.POST.get('data')
+            if request.POST.get('data'):
+                saida.data = request.POST.get('data')
             saida.fonte = request.POST.get('fonte')
             saida.superfluo = True if request.POST.get('superfluo') else False
             saida.save()
             return redirect('saida')
         except Exception as e:
-            print(e)
+            messages.error(request, e)
             form_saida = request.POST
     form_saida = models.Saida.objects.filter(id=id).values().get()
     data = {
@@ -132,7 +138,7 @@ def saida_excluir(request, id):
             models.Saida.objects.filter(id=request.POST.get('id')).delete()
             return redirect('saida')
         except Exception as e:
-            print(e)
+            messages.error(request, e)
     data = {
         'id': id
     }
